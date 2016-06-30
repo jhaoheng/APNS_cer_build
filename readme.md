@@ -1,9 +1,12 @@
 
+# wanted
+- [ ] 透過 cli 輸出 key(p12) 的方式
+
 # readme
 
 一切都為了簡化 APNS 憑證，建立的問題  
 因 php/python 需用 .pem 來與 APNS 進行驗證  
-故利用簡易的 menu 來透過 openssl 將 .cer 與 .p12 進行合併  
+故利用簡易的 menu 來透過 openssl 將 .p12 -> .pem  
 And you can test your pem to connect APNS for vertificate.
 
 ## Must do FIRST
