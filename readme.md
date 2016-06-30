@@ -1,6 +1,6 @@
 
 # wanted
-- [ ] 透過 cli 輸出 key(p12) 的方式
+將 .sh -> command 再進行測試
 
 # readme
 
