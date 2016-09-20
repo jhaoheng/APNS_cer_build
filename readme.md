@@ -65,3 +65,26 @@ And you can test your pem to connect APNS for vertificate.
 無需用兩張憑證合併
 直接用 `openssl pkcs12 -in apns-dev-cert.p12 -out apns-dev-cert.pem -nodes -clcerts`
 openssl pkcs12 -in demo.p12 -out demo.pem -nodes -clcerts
+
+
+## 產生憑證指令
+
+### method_1
+
+```
+openssl x509 -in [input].cer -inform der -out [cer].pem
+openssl pkcs12 -nocerts -out [key].pem -in [input].p12
+cat [cer].pem [key].pem > [final].pem
+```
+
+
+### method_2
+
+1. output key 
+	![img](assets/img2.png)
+
+2. 產生憑證
+
+	```
+	openssl pkcs12 -in demo.p12 -out demo.pem -nodes -clcerts
+	```
