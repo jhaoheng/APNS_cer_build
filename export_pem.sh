@@ -20,3 +20,6 @@ if [[ ${status_array[0]} == true ]]; then
         cat ./$path/pro.pem ./$path/proKey.pem > ./$path/apns_pro.pem
     fi
 fi
+
+
+echo "hello"

@@ -1,5 +1,16 @@
 #!/bin/bash
 
+function print_cmd (){
+        echo ""
+        echo "+++"
+        echo "The cmd is :" $cmd
+        echo "+++"
+        echo ""
+        echo "."
+        echo ".."
+        echo "..."
+}
+
 # 詢問是否建立 pem 或者 直接執行測試
 echo ""
 echo ""
@@ -39,20 +50,15 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 ]]; then
             path=drawer/$filePath/pro
             cmd="openssl s_client -connect gateway.push.apple.com:2195 -cert ./$path/pro.pem -key ./$path/proKey.pem"
         fi
-        echo ""
-        echo "+++"
-        echo "The cmd is :" $cmd
-        echo "+++"
-        echo ""
-        echo "."
-        echo ".."
-        echo "..."
+        print_cmd cmd
         sleep 2 | $cmd
     fi
 
 elif [[ $selected == 4 ]]
 then
-    sleep 2 | telnet gateway.sandbox.push.apple.com 2195
+    cmd="telnet gateway.sandbox.push.apple.com 2195"
+    print_cmd cmd
+    sleep 2 | $cmd
 
 elif [[ $selected == 5 ]]
 then
@@ -66,3 +72,5 @@ fi
 echo ""
 echo ""
 echo "Finish..."
+
+
