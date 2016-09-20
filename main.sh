@@ -21,13 +21,13 @@ echo "3. openssl, use pro to connect APNS(return code = 0 or 20,success)"
 echo "4. Test your computer to connect APNS, the channel is working"
 echo "5. If you don't know how to create 'APNS certificate', check out!(website)"
 echo "6. Troubleshooting Push Notifications(website)"
-# echo "7. Test Push"
+echo "7. Create curl HTTP/2 cmd"
 echo ""
 read -p "Insert number : " selected
 
 # 選擇路徑位置
 echo "==========="
-if [[ $selected == 1 || $selected == 2 || $selected == 3 ]]; then
+if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; then
     ls -al ./drawer
     echo ""
     echo "Please select you product path...."
@@ -37,11 +37,22 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 ]]; then
     echo "you choice floder is : "$filePath
     echo "=================="
 
-    if [[ $selected == 1 ]]; then
+    if [[ $selected == 1 || $selected == 7 ]]; then
         echo ""
         echo "Please choice you want to create mode:(dev or pro)"
         read -p "Mode is : " mode
-        source export_pem_2.sh
+
+        if [[ $selected == 1 ]]; then
+            source export_pem_2.sh
+
+        elif [[ $selected == 7 ]]; then
+            path=drawer/$filePath/$mode
+            echo ""
+            echo "Please input token : "
+            read -p "token is : " token
+            cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 https://api.development.push.apple.com/3/device/$token"
+            print_cmd cmd
+        fi
 
     elif [[ $selected == 2 || $selected == 3 ]]; then
         if [[ $selected == 2 ]]; then

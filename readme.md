@@ -6,12 +6,16 @@
 And you can test your pem to connect APNS for vertificate.
 
 
->Please confirm the 'package' file:
-./main.sh
-./export\_pem_2.sh
-./checkFile.sh
-./drawer/\<your product folder\>/dev/
-./drawer/\<your product folder\>/pro/
+Please confirm the 'package' file:
+- ./main.sh
+- ./export\_pem_2.sh
+- ./checkFile.sh
+- ./drawer/\<your product folder\>/dev/
+- ./drawer/\<your product folder\>/pro/
+- **if want to use CURL to push msg, should install curl with nghttp2**
+	- install(mac) : 
+		- `brew install curl --with-nghttp2` 
+		- `brew link curl --force`
 
 ## How to use
 
@@ -58,6 +62,11 @@ And you can test your pem to connect APNS for vertificate.
 4. Test your computer to connect APNS, the channel is working
 5. If you don't know how to create 'APNS certificate', check out!(website)
 6. Troubleshooting Push Notifications(website)
+7. 產生 curl 測試 push 指令
+	- required : https://curl.haxx.se/docs/http2.html
+	- install(mac) : 
+		- `brew install curl --with-nghttp2` 
+		- `brew link curl --force`
 
 
 ## 產生憑證指令
