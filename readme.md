@@ -3,16 +3,14 @@
 一切都為了簡化 APNS 憑證，建立的問題  
 因 php/python 需用 .pem 來與 APNS 進行驗證  
 故利用簡易的 menu 來透過 openssl 將 .p12 -> .pem  
-And you can test your pem to connect APNS for vertificate.
 
+## 解決問題
 
-Please confirm the 'package' file:
-- ./main.sh
-- ./export\_pem_2.sh
-- ./checkFile.sh
-- ./drawer/\<your product folder\>/dev/
-- ./drawer/\<your product folder\>/pro/
-- **if want to use CURL to push msg, should install curl with nghttp2**
+0. 收納憑證
+1. 建立憑證
+2. 測試憑證
+3. 測試 apns server
+4. 測試推播
 	- install(mac) : 
 		- `brew install curl --with-nghttp2` 
 		- `brew link curl --force`
