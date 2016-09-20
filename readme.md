@@ -28,3 +28,10 @@ And you can test your pem to connect APNS for vertificate.
 ## How to work
 
 1. do it ```bash main.sh```
+
+
+## new 
+
+無需用兩張憑證合併
+直接用 `openssl pkcs12 -in apns-dev-cert.p12 -out apns-dev-cert.pem -nodes -clcerts`
+openssl pkcs12 -in demo.p12 -out demo.pem -nodes -clcerts

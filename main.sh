@@ -43,6 +43,8 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 ]]; then
     elif [[ $selected == 2 ]]; then
         path=drawer/$filePath/dev
         echo $path
+	cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/develop.pem -key ./$path/developKey.pem"
+	echo $cmd
         sleep 2 | openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/develop.pem -key ./$path/developKey.pem
     elif [[ $selected == 3 ]]; then
         path=drawer/$filePath/pro
