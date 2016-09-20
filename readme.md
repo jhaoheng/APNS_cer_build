@@ -8,10 +8,10 @@ And you can test your pem to connect APNS for vertificate.
 
 >Please confirm the 'package' file:
 ./main.sh
-./export_pem.sh
+./export\_pem_2.sh
 ./checkFile.sh
-./drawer/<your product folder>/dev/
-./drawer/<your product folder>/pro/
+./drawer/\<your product folder\>/dev/
+./drawer/\<your product folder\>/pro/
 
 ## How to use
 
@@ -19,12 +19,11 @@ And you can test your pem to connect APNS for vertificate.
 	1. 在 `drawer/`，建立 [專案名稱]
 	2. 在 [專案名稱] 下，建立 dev 與 pro 資料夾
 	3. 在 dev / pro 放入檔案
-		- develop.cer : from develop center, download **SSL Certificate** file from **Push Notifications** ![img](assets/img3.png)
 		- developKey.p12 : from keychain, output **p12** file from **Apple Developemnt IOS Push Service: [bundle_id]** ![img](assets/img2.png)
 2. 開啟 cmd，執行 `sh main.sh`
-3. 選擇 2 : **Create 'PEM'**
+3. 選擇 (1) : **Create 'PEM'**
 	1. 輸入專案名稱
-	2. 輸入 dev 或 pem
+	2. 輸入 dev 或 pro
 
 ## How to TEST the created PEM
 
@@ -60,31 +59,29 @@ And you can test your pem to connect APNS for vertificate.
 5. If you don't know how to create 'APNS certificate', check out!(website)
 6. Troubleshooting Push Notifications(website)
 
-## new 
-
-無需用兩張憑證合併
-直接用 `openssl pkcs12 -in apns-dev-cert.p12 -out apns-dev-cert.pem -nodes -clcerts`
-openssl pkcs12 -in demo.p12 -out demo.pem -nodes -clcerts
-
 
 ## 產生憑證指令
 
 ### method_1
 
+
+1. develop.cer : from develop center, download **SSL Certificate** file from **Push Notifications**
+2. developKey.p12 : from keychain
+
 ```
-openssl x509 -in [input].cer -inform der -out [cer].pem
-openssl pkcs12 -nocerts -out [key].pem -in [input].p12
+openssl x509 -in [develop].cer -inform der -out [cer].pem
+openssl pkcs12 -nocerts -out [key].pem -in [developKey].p12
 cat [cer].pem [key].pem > [final].pem
 ```
 
 
 ### method_2
 
-1. output key 
+1. output key : from keychain
 	![img](assets/img2.png)
 
 2. 產生憑證
 
 	```
-	openssl pkcs12 -in demo.p12 -out demo.pem -nodes -clcerts
+	openssl pkcs12 -in [developKey].p12 -out [cer].pem -nodes -clcerts
 	```
