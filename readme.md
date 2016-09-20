@@ -5,6 +5,15 @@
 故利用簡易的 menu 來透過 openssl 將 .p12 -> .pem  
 And you can test your pem to connect APNS for vertificate.
 
+## info
+
+Please confirm the 'package' file:
+./main.sh
+./export_pem.sh
+./checkFile.sh
+./drawer/<your product folder>/dev/
+./drawer/<your product folder>/pro/
+
 ## How to use
 
 1. 專案環境建立，可參考 /drawer/sample 檔案內容
@@ -17,6 +26,31 @@ And you can test your pem to connect APNS for vertificate.
 3. 選擇 2 : **Create 'PEM'**
 	1. 輸入專案名稱
 	2. 輸入 dev 或 pem
+
+## How to TEST the created PEM
+
+1. `sh main.sh`
+2. 選擇 2(dev) or 3(pro)
+3. SSL 訊息，**Verify return code: 0 (ok)** 代表成功
+
+	```
+	New, TLSv1/SSLv3, Cipher is AES256-SHA
+	Server public key is 2048 bit
+	Secure Renegotiation IS supported
+	Compression: NONE
+	Expansion: NONE
+	SSL-Session:
+	    Protocol  : TLSv1
+	    Cipher    : AES256-SHA
+	    Session-ID: 
+	    Session-ID-ctx: 
+	    Master-Key: 7A242B475AF0CFF21BA3FA375A0F3BA1C54ACC497848668ABEDBCF728E1BE525FD27FB6AA11DA82918AC7D83206588F0
+	    Key-Arg   : None
+	    Start Time: 1474354169
+	    Timeout   : 300 (sec)
+	    Verify return code: 0 (ok)
+	---
+	```
 
 ## Feature
 
