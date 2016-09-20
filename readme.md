@@ -10,7 +10,7 @@
 1. 建立憑證
 2. 測試憑證
 3. 測試 apns server
-4. 測試推播
+4. 測試推播 : 要求安裝 curl with http2 
 	- install(mac) : 
 		- `brew install curl --with-nghttp2` 
 		- `brew link curl --force`
