@@ -19,7 +19,7 @@ fi
 # echo $keyfile
 
 function checkFile (){
-    array=($cerfile $keyfile)
+    array=($keyfile)
     # echo "${array[@]}"
     for i in 0 1
     do
@@ -45,15 +45,15 @@ IFS='+' read -a return_checkFile <<< "$status"
 
 # cer
 # echo ${array3[1]}
-cer_status=${return_checkFile[1]}
-IFS=':' read -a cer_status_array <<< "$cer_status"
-# echo ${temp_1_array[1]}
-if [[ ${cer_status_array[1]} == false ]]; then
-    echo ${cer_status_array[0]}
-fi
+# cer_status=${return_checkFile[1]}
+# IFS=':' read -a cer_status_array <<< "$cer_status"
+# # echo ${temp_1_array[1]}
+# if [[ ${cer_status_array[1]} == false ]]; then
+#     echo ${cer_status_array[0]}
+# fi
 
 # key
-key_status=${return_checkFile[2]}
+key_status=${return_checkFile[1]}
 IFS=':' read -a key_status_array <<< "$key_status"
 if [[ ${key_status_array[1]} == false ]]; then
     echo ${key_status_array[0]}
@@ -61,7 +61,10 @@ fi
 
 function fileStatus()
 {
-    if [[ ${key_status_array[1]} == true && ${cer_status_array[1]} == true ]]; then
+    # if [[ ${key_status_array[1]} == true && ${cer_status_array[1]} == true ]]; then
+    #     echo true'+'$productPath'+'$mode
+    # fi
+    if [[ ${key_status_array[1]} == true ]]; then
         echo true'+'$productPath'+'$mode
     fi
 }

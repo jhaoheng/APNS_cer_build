@@ -21,6 +21,7 @@ echo "3. openssl, use pro to connect APNS(return code = 0 or 20,success)"
 echo "4. Test your computer to connect APNS, the channel is working"
 echo "5. If you don't know how to create 'APNS certificate', check out!(website)"
 echo "6. Troubleshooting Push Notifications(website)"
+# echo "7. Test Push"
 echo ""
 read -p "Insert number : " selected
 
@@ -40,15 +41,19 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 ]]; then
         echo ""
         echo "Please choice you want to create mode:(dev or pro)"
         read -p "Mode is : " mode
-        source export_pem.sh
+        source export_pem_2.sh
 
     elif [[ $selected == 2 || $selected == 3 ]]; then
         if [[ $selected == 2 ]]; then
             path=drawer/$filePath/dev
-            cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/develop.pem -key ./$path/developKey.pem"
+            # cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/develop.pem -key ./$path/developKey.pem"
+            
+            cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/apns_dev.pem"
         elif [[ $selected == 3 ]]; then
             path=drawer/$filePath/pro
-            cmd="openssl s_client -connect gateway.push.apple.com:2195 -cert ./$path/pro.pem -key ./$path/proKey.pem"
+            # cmd="openssl s_client -connect gateway.push.apple.com:2195 -cert ./$path/pro.pem -key ./$path/proKey.pem"
+            
+            cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/apns_pro.pem"
         fi
         print_cmd cmd
         sleep 2 | $cmd
