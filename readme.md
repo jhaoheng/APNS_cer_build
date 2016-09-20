@@ -1,8 +1,9 @@
 # readme
 
-一切都為了簡化 APNS 憑證，建立的問題  
-因 php/python 需用 .pem 來與 APNS 進行驗證  
-故利用簡易的 menu 來透過 openssl 將 .p12 -> .pem  
+- 目的 : 一切都為了簡化 APNS 憑證，建立的問題，因 php/python 需用 .pem 來與 APNS 進行驗證，故利用簡易的 tool 透過 openssl 將 .p12 -> .pem，並達到基本測試效果
+- 可與 [apnsReceiver](https://github.com/jhaoheng/apnsReceiver) 聯合測試
+	- 接收訊息
+	- 判斷此 token 是哪一種憑證建立，並對應到適當的 pem，進行發送
 
 ## 解決問題
 
