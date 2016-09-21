@@ -43,7 +43,6 @@
 3. 若錯誤，則會產生錯誤訊息
 	- ex : 憑證錯誤，無法跟伺服器產生交握 => `unable to load client certificate private key file` or `unable to load certificate`
 	- ex : 將 dev 的憑證，丟給 api.push.apple.com:443 => 錯誤訊息 `{"reason":"BadCertificateEnvironment"}`
-4. 若憑證授權錯誤，則
 
 ## Feature
 
