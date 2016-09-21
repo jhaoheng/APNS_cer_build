@@ -28,7 +28,9 @@
 	1. 在 `drawer/`，建立 [專案名稱]
 	2. 在 [專案名稱] 下，建立 dev 與 pro 資料夾
 	3. 在 dev / pro 放入檔案
-		- developKey.p12 : from keychain, output **p12** file from **Apple Developemnt IOS Push Service: [bundle_id]** ![img](assets/img2.png)
+		- dev -> save as `developKey.p12`
+		- pro -> save as `proKey.p12`
+		- from keychain, output **p12** file from **Apple Developemnt IOS Push Service: [bundle_id]** ![img](assets/img2.png)
 2. 開啟 cmd，執行 `sh main.sh`
 3. 選擇 (1) : **Create 'PEM'**
 	1. 輸入專案名稱
