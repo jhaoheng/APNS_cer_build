@@ -14,6 +14,8 @@
 0. 收納憑證
 1. 建立憑證
 2. 測試憑證
+	- Apple Push Notification service SSL (Sandbox)
+	- Apple Push Notification service SSL (Sandbox & Production) : 新的 production 的 apns cer 包含 Sandbox & Production
 3. 測試 apns server
 4. 測試推播 : 要求安裝 curl with http2 
 	- install(mac) : 
