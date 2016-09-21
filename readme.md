@@ -40,26 +40,10 @@
 
 1. `sh main.sh`
 2. 選擇 2(dev) or 3(pro)
-3. SSL 訊息，**Verify return code: 0 (ok)** 代表成功
-
-	```
-	New, TLSv1/SSLv3, Cipher is AES256-SHA
-	Server public key is 2048 bit
-	Secure Renegotiation IS supported
-	Compression: NONE
-	Expansion: NONE
-	SSL-Session:
-	    Protocol  : TLSv1
-	    Cipher    : AES256-SHA
-	    Session-ID: 
-	    Session-ID-ctx: 
-	    Master-Key: 7A242B475AF0CFF21BA3FA375A0F3BA1C54ACC497848668ABEDBCF728E1BE525FD27FB6AA11DA82918AC7D83206588F0
-	    Key-Arg   : None
-	    Start Time: 1474354169
-	    Timeout   : 300 (sec)
-	    Verify return code: 0 (ok)
-	---
-	```
+3. 若錯誤，則會產生錯誤訊息
+	- ex : 憑證錯誤，無法跟伺服器產生交握 => `unable to load client certificate private key file` or `unable to load certificate`
+	- ex : 將 dev 的憑證，丟給 api.push.apple.com:443 => 錯誤訊息 `{"reason":"BadCertificateEnvironment"}`
+4. 若憑證授權錯誤，則
 
 ## Feature
 

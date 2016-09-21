@@ -72,7 +72,7 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; t
             cmd="openssl s_client -connect api.push.apple.com:443 -cert ./$path/apns_pro.pem"
         fi
         print_cmd cmd
-        $cmd
+        sleep 1 | $cmd
     fi
 
 elif [[ $selected == 4 ]]
@@ -84,7 +84,7 @@ then
     cmd="telnet gateway.sandbox.push.apple.com 2195"
     print_cmd cmd
     sleep 2 | $cmd
-    
+
     cmd="telnet gateway.push.apple.com 2195"
     print_cmd cmd
     sleep 2 | $cmd
