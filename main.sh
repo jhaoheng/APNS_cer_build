@@ -47,10 +47,15 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; t
 
         elif [[ $selected == 7 ]]; then
             path=drawer/$filePath/$mode
+            if [[ $mode == 'dev' ]]; then
+                url='https://api.development.push.apple.com/3/device'
+            else 
+                url='https://api.push.apple.com/3/device'
+            fi
             echo ""
             echo "Please input token : "
             read -p "token is : " token
-            cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 https://api.development.push.apple.com/3/device/$token"
+            cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 $url/$token"
             print_cmd cmd
         fi
 
@@ -59,20 +64,28 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; t
             path=drawer/$filePath/dev
             # cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/develop.pem -key ./$path/developKey.pem"
             
-            cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/apns_dev.pem"
+            cmd="openssl s_client -connect api.development.push.apple.com:443 -cert ./$path/apns_dev.pem"
         elif [[ $selected == 3 ]]; then
             path=drawer/$filePath/pro
             # cmd="openssl s_client -connect gateway.push.apple.com:2195 -cert ./$path/pro.pem -key ./$path/proKey.pem"
             
-            cmd="openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ./$path/apns_pro.pem"
+            cmd="openssl s_client -connect api.push.apple.com:443 -cert ./$path/apns_pro.pem"
         fi
         print_cmd cmd
-        sleep 2 | $cmd
+        $cmd
     fi
 
 elif [[ $selected == 4 ]]
 then
+    cmd="telnet 1-courier.push.apple.com 5223"
+    print_cmd cmd
+    sleep 2 | $cmd
+
     cmd="telnet gateway.sandbox.push.apple.com 2195"
+    print_cmd cmd
+    sleep 2 | $cmd
+    
+    cmd="telnet gateway.push.apple.com 2195"
     print_cmd cmd
     sleep 2 | $cmd
 
