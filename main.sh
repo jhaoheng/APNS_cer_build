@@ -34,16 +34,16 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; t
     ls -al ./drawer
     echo ""
     echo "\033[1;33mPlease fill below arg....\033[0m : "
-    read -p "floder is : " filePath
+    read -p "Porject             : " filePath
 
     if [[ $selected == 1 || $selected == 7 ]]; then
-        read -p "Mode is dev/pro : " mode
+        read -p "Mode (dev | pro)    : " mode
 
         if [[ $selected == 1 ]]; then
             source export_pem_2.sh
 
         elif [[ $selected == 7 ]]; then
-            read -p "bundle id is : " bundleid
+            read -p "bundle id           : " bundleid
 
             path=drawer/$filePath/$mode
             if [[ $mode == 'dev' ]]; then
@@ -52,10 +52,10 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; t
                 url='https://api.push.apple.com/3/device'
             fi
 
-            read -p "token is : " token
+            read -p "token is            : " token
             cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 $url/$token -H \"apns-topic: $bundleid\""
             print_cmd cmd
-            echo "\033[1;41;37m===>Please use this green cmd to push message \033[0m"
+            echo "\033[1;41;37m===>Please use the [green cmd] to push message \033[0m"
         fi
 
     elif [[ $selected == 2 || $selected == 3 ]]; then
