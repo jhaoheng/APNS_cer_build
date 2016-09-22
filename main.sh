@@ -3,7 +3,9 @@
 function print_cmd (){
         echo ""
         echo "+++"
-        echo "The cmd is :" $cmd
+        echo "The cmd is :"
+        # echo $cmd
+        echo "\033[1;32m $cmd \033[0m"
         echo "+++"
         echo ""
         echo "."
@@ -40,23 +42,25 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; t
     if [[ $selected == 1 || $selected == 7 ]]; then
         echo ""
         echo "Please choice you want to create mode:(dev or pro)"
-        read -p "Mode is : " mode
+        read -p "Mode is dev/pro : " mode
 
         if [[ $selected == 1 ]]; then
             source export_pem_2.sh
 
         elif [[ $selected == 7 ]]; then
+            read -p "bundle id is : " bundleid
+
             path=drawer/$filePath/$mode
             if [[ $mode == 'dev' ]]; then
                 url='https://api.development.push.apple.com/3/device'
             else 
                 url='https://api.push.apple.com/3/device'
             fi
-            echo ""
-            echo "Please input token : "
+
             read -p "token is : " token
-            cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 $url/$token"
+            cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 $url/$token -H \"apns-topic: $bundleid\""
             print_cmd cmd
+            echo "\033[1;33m===>Please use this cmd to push message \033[0m"
         fi
 
     elif [[ $selected == 2 || $selected == 3 ]]; then

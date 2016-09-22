@@ -7,7 +7,9 @@ source ./checkFile.sh
 function print_cmd (){
         echo ""
         echo "+++"
-        echo "The cmd is :" $cmd
+        echo "The cmd is :"
+        # echo $cmd
+        echo "\033[32m $cmd \033[0m"
         echo "+++"
         echo ""
         echo "."
