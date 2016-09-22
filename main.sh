@@ -17,31 +17,26 @@ function print_cmd (){
 echo ""
 echo ""
 echo "************************"
-echo "1. Create 'PEM' ..."
-echo "2. openssl, use dev to connect APNS(return code = 0 or 20,success)"
-echo "3. openssl, use pro to connect APNS(return code = 0 or 20,success)"
-echo "4. Test your computer to connect APNS, the channel is working"
-echo "5. If you don't know how to create 'APNS certificate', check out!(website)"
-echo "6. Troubleshooting Push Notifications(website)"
-echo "7. Create curl HTTP/2 cmd"
+echo "\033[34m 1\033[0m. Generate 'PEM' ..."
+echo "\033[34m 2\033[0m. Test \033[1;4mdev-pem\033[0m (openssl)"
+echo "\033[34m 3\033[0m. Test \033[1;4mpro-pem\033[0m (openssl) "
+echo "\033[34m 4\033[0m. Test apns server"
+echo "\033[34m 5\033[0m. If you don't know how to create 'APNS certificate', check out!(website)"
+echo "\033[34m 6\033[0m. Troubleshooting Push Notifications(website)"
+echo "\033[34m 7\033[0m. Generate cmd for send msg"
 echo ""
 read -p "Insert number : " selected
 
+echo ""
 # 選擇路徑位置
 echo "==========="
 if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; then
     ls -al ./drawer
     echo ""
-    echo "Please select you product path...."
+    echo "\033[1;33mPlease fill below arg....\033[0m : "
     read -p "floder is : " filePath
 
-    echo "=================="
-    echo "you choice floder is : "$filePath
-    echo "=================="
-
     if [[ $selected == 1 || $selected == 7 ]]; then
-        echo ""
-        echo "Please choice you want to create mode:(dev or pro)"
         read -p "Mode is dev/pro : " mode
 
         if [[ $selected == 1 ]]; then
@@ -60,7 +55,7 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; t
             read -p "token is : " token
             cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 $url/$token -H \"apns-topic: $bundleid\""
             print_cmd cmd
-            echo "\033[1;33m===>Please use this cmd to push message \033[0m"
+            echo "\033[1;41;37m===>Please use this green cmd to push message \033[0m"
         fi
 
     elif [[ $selected == 2 || $selected == 3 ]]; then
