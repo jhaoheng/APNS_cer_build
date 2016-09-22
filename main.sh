@@ -21,28 +21,29 @@ echo "\033[34m 1\033[0m. Generate 'PEM' ..."
 echo "\033[34m 2\033[0m. Test \033[1;4mdev-pem\033[0m (openssl)"
 echo "\033[34m 3\033[0m. Test \033[1;4mpro-pem\033[0m (openssl) "
 echo "\033[34m 4\033[0m. Test apns server"
-echo "\033[34m 5\033[0m. If you don't know how to create 'APNS certificate', check out!(website)"
-echo "\033[34m 6\033[0m. Troubleshooting Push Notifications(website)"
-echo "\033[34m 7\033[0m. Generate cmd for send msg"
+echo "\033[34m 5\033[0m. Generate cmd for send msg (HTTP/2)"
+echo "\033[34m 6\033[0m. If you don't know how to create 'APNS certificate', check out! (website)"
+echo "\033[34m 7\033[0m. Troubleshooting Push Notifications (website)"
+echo "\033[34m 8\033[0m. HTTP/2 Request to APNs structure & response info (website)"
 echo ""
 read -p "Insert number : " selected
 
 echo ""
 # 選擇路徑位置
 echo "==========="
-if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 7 ]]; then
+if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 5 ]]; then
     ls -al ./drawer
     echo ""
     echo "\033[1;33mPlease fill below arg....\033[0m : "
     read -p "Porject             : " filePath
 
-    if [[ $selected == 1 || $selected == 7 ]]; then
+    if [[ $selected == 1 || $selected == 5 ]]; then
         read -p "Mode (dev | pro)    : " mode
 
         if [[ $selected == 1 ]]; then
             source export_pem_2.sh
 
-        elif [[ $selected == 7 ]]; then
+        elif [[ $selected == 5 ]]; then
             read -p "bundle id           : " bundleid
 
             path=drawer/$filePath/$mode
@@ -88,13 +89,15 @@ then
     print_cmd cmd
     sleep 2 | $cmd
 
-elif [[ $selected == 5 ]]
+elif [[ $selected == 6 ]]
 then
     open https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW11
 
-elif [[ $selected == 6 ]]
+elif [[ $selected == 7 ]]
 then
     open https://developer.apple.com/library/ios/technotes/tn2265/_index.html#//apple_ref/doc/uid/DTS40010376
+elif [[ $selected == 8 ]]; then
+    open https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html
 fi
 
 echo ""
