@@ -5,6 +5,8 @@
 	- 接收訊息
 	- 判斷此 token 是哪一種憑證建立，並對應到適當的 pem，進行發送
 
+![img4](assets/img4.png)
+
 ## required
 - openssl 1.0.1 or later : `openssl version`
 - curl support http2 : `curl -V`
