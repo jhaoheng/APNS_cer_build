@@ -1,11 +1,18 @@
 #!/bin/bash
 
+history_file=".history"
+
 function print_cmd (){
         echo ""
         echo "+++"
         echo "The cmd is :"
-        # echo $cmd
+
         echo "\033[1;32m $cmd \033[0m"
+        
+        date +"%m-%d-%Y %T" >> $history_file
+        echo $cmd >> $history_file
+        echo "" >> $history_file
+
         echo "+++"
         echo ""
         echo "."
@@ -41,7 +48,8 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 5 ]]; t
         read -p "Mode (dev | pro)    : " mode
 
         if [[ $selected == 1 ]]; then
-            source export_pem_2.sh
+            test="hello_world"
+            source export_pem.sh
 
         elif [[ $selected == 5 ]]; then
             read -p "bundle id           : " bundleid
@@ -54,9 +62,11 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 5 ]]; t
             fi
 
             read -p "token is            : " token
-            cmd="curl -d '{\"aps\":{\"alert\":\"hi\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 $url/$token -H \"apns-topic: $bundleid\""
-            print_cmd cmd
+            cmd="curl -d '{\"aps\":{\"alert\":\"motiondetect_test\",\"sound\":\"default\"}}' --cert ./$path/apns_$mode.pem --http2 $url/$token -H \"apns-topic: $bundleid\""
+            # cmd="curl -d '{\"aps\":{}}' --cert ./$path/apns_$mode.pem --http2 $url/$token -H \"apns-topic: $bundleid\""
+            print_cmd
             echo "\033[1;41;37m===>Please use the [green cmd] to push message \033[0m"
+
         fi
 
     elif [[ $selected == 2 || $selected == 3 ]]; then
@@ -71,22 +81,22 @@ if [[ $selected == 1 || $selected == 2 || $selected == 3 || $selected == 5 ]]; t
             
             cmd="openssl s_client -connect api.push.apple.com:443 -cert ./$path/apns_pro.pem"
         fi
-        print_cmd cmd
+        print_cmd
         sleep 1 | $cmd
     fi
 
 elif [[ $selected == 4 ]]
 then
     cmd="telnet 1-courier.push.apple.com 5223"
-    print_cmd cmd
+    print_cmd
     sleep 2 | $cmd
 
     cmd="telnet gateway.sandbox.push.apple.com 2195"
-    print_cmd cmd
+    print_cmd
     sleep 2 | $cmd
 
     cmd="telnet gateway.push.apple.com 2195"
-    print_cmd cmd
+    print_cmd
     sleep 2 | $cmd
 
 elif [[ $selected == 6 ]]
